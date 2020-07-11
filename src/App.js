@@ -4,6 +4,7 @@ function App() {
 
   const aliceSprite = useRef(null);
   const foreground = useRef(null);
+  const background = useRef(null);
 
   useLayoutEffect(() => {
     // Alice
@@ -45,8 +46,9 @@ function App() {
       };
 
       var foregroundMovement = foreground.current.animate(sceneryFrames, sceneryTimingForeground);
+      var backgroundMovement = background.current.animate(sceneryFrames, sceneryTimingBackground);
 
-      var sceneries = [foregroundMovement];
+      var sceneries = [foregroundMovement, backgroundMovement];
 
       var adjustSceneryPlayback = function() {
         console.log(alice.playbackRate)
@@ -86,8 +88,14 @@ function App() {
         </div>
       </div>>
       
-      <div className="scenery" id="foreground1" ref={foreground}>
+      <div className="scenery" id="foreground" ref={foreground}>
         <img id="treefore" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/palm3_small.png"/>
+      </div>
+
+      <div className="scenery background1" ref={background}>
+        <img className="pawn" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/r_pawn_upright_small.png" srcSet="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/r_pawn_upright.png 2x" alt=" " />
+        <img className="pawn2" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/r_pawn_upright_small.png" srcSet="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/r_pawn_upright.png 2x" alt=" " />
+        <img className="treeback" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/palm1_small.png" srcSet="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/palm1.png 2x" alt=" " />
       </div>
     </div>
   );
