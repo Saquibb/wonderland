@@ -5,20 +5,34 @@ function App() {
   const aliceSprite = useRef(null);
 
   useLayoutEffect(() => {
-    var spriteFrames = [
-      { transform: 'translateY(0)' },
-      { transform: 'translateY(-100%)' }   
-    ];
+      var spriteFrames = [
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(-100%)' }   
+      ];
 
-    aliceSprite.current.animate(
-      spriteFrames, {
-        easing: 'steps(7, end)',
-        direction: "reverse",
-        duration: 500,
-        playbackRate: 1,
-        iterations: Infinity
-      });
+      var alice = aliceSprite.current.animate(
+        spriteFrames, {
+          easing: 'steps(7, end)',
+          direction: "reverse",
+          duration: 500,
+          playbackRate: 1,
+          iterations: Infinity
+        });
+
+      setInterval( function() {
+        if (alice.playbackRate > .4) {
+          alice.playbackRate -= .1;    
+        } 
+      }, 3000);
+    
+      const goFaster = () => {
+        alice.playbackRate += 0.1;
+      }
+  
+      window.addEventListener("click", goFaster);
   })
+
+  
   
   return (
     <div className="container">
