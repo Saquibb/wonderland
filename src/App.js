@@ -89,7 +89,7 @@ function App() {
       </div>>
       
       <div className="scenery" id="foreground" ref={foreground}>
-        <img id="treefore" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/palm3_small.png"/>
+        <img id="treefore" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/641/palm3_small.png" alt=" "/>
       </div>
 
       <div className="scenery background1" ref={background}>
