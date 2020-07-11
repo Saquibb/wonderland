@@ -23,7 +23,8 @@ function App() {
 
       setInterval( function() {
         if (alice.playbackRate > .4) {
-          alice.playbackRate -= .1;    
+          alice.playbackRate -= .1;
+          adjustSceneryPlayback();
         } 
       }, 3000);
 
@@ -45,8 +46,29 @@ function App() {
 
       var foregroundMovement = foreground.current.animate(sceneryFrames, sceneryTimingForeground);
 
+      var sceneries = [foregroundMovement];
+
+      var adjustSceneryPlayback = function() {
+        console.log(alice.playbackRate)
+        if (alice.playbackRate < .8) {
+          sceneries.forEach(function(anim) {
+            anim.playbackRate = alice.playbackRate/2 * -1;
+          });
+        } else if (alice.playbackRate > 1.2) {
+          sceneries.forEach(function(anim) {
+            anim.playbackRate = alice.playbackRate/2;
+          });
+        } else {
+          sceneries.forEach(function(anim) {
+            anim.playbackRate = 0;    
+          });
+        }   
+      }
+      adjustSceneryPlayback();
+
       const goFaster = () => {
         alice.playbackRate += 0.1;
+        adjustSceneryPlayback();
       }
   
       window.addEventListener("click", goFaster);
